@@ -22,7 +22,7 @@ int main(void)
    }
    else if (ccnum >= MIN15 && ccnum <= MAX15)
    {
-       printf("This may be a AMEX card\n");
+       printf("card may be an AMEX\n");
        length = 15;
    }
    else if (ccnum >= MIN13 && ccnum <= MAX13)
@@ -37,27 +37,23 @@ int main(void)
    }
    int timesTwo = 0;
    int noTimes = 0;
+   int final = 0;
+
    for(; length > 0; length--)
    {
        int digit  = ccnum % 10;
-      // printf("length: %i\tDigit: %i\n", length, digit);
+       printf("length: %i\tDigit: %i\n", length, digit);
        ccnum = ccnum / 10;
        if (length  % 2 == 0) {
            int temp = digit * 2;
-               timesTwo += temp % 10 + temp / 10;
+           if (temp >= 10) {
+               timesTwo = temp % 10 + temp / 10;
            }
            else
            {
                noTimes += digit;
            }
        }
-       int final = noTimes + timesTwo;
-       if (final % 10 == 0)
-       {
-            printf("VALID\n");
-       }
-       else
-       {
-          printf("INVALID\n");
-       }
+       printf("timesTwo: %i\tnoTimes: %i\n", timesTwo, noTimes);
+   }
 }
